@@ -1,85 +1,61 @@
-import pretty_midi as pm
-
-mdir = 'target.mid'
+mdir = './performance/perfcsv/'+each[:-9]+'xinst.csv'
 
 #test = pm.PrettyMidi(mdir)
-xsocre = []
+xscore = []
 with open(mdir,'r') as f:
-    templist = f.split('\n')
+    templist = f.read().split('\n')
     templist.pop()
     for line in templist:
         xscore.append([float(i) for i in line.split(',')])
-for each in xscore:
-    each.append(each[1].round())
-print(xscore)
-raise
+
+#print(xscore[-2])
+#raise
 '''
 [[0,1.0000,1.45,66,80,2.214,tempo1,3.1223,tempo2,duration,timelenth],
 [],
 []]
 '''
-frame = 0.125
+frame = 0.25
 t = 0
 note_index = 0
 c_ins = 0
 FLAG = True
 result = []
+n = 0
+
 while FLAG:
     if xscore[note_index][0] == -3:
         break
     if xscore[note_index][0] != c_ins:
-        c_ins+=1
-        t = 0
+        raise
     InerFLAG = True
     while InerFLAG:
-        if t>=xscore[note_index][****] and t<=xscore[note_index][****]:
-            result.append([c_ins])
+
+        if t>=round(xscore[note_index][1],6) and t<=round(xscore[note_index][2],6):
+            print(xscore[note_index][1])
+            
+            speed = None
+            for j in range(len(xscore[-2])):
+                if t<xscore[-2][j]:
+                    speed = xscore[-3][j-1]
+                    break
+            if speed == None:
+                speed = xscore[-3][-1]
+                
+                
+            result.append([c_ins,t,speed ,xscore[note_index][3],xscore[note_index][4],xscore[note_index][1]])
             note_index+=1
+        else:
+            result.append([c_ins,t,speed,0,0,0])
+            InerFLAG = False
+        n+=1
         if xscore[note_index][0] != c_ins:
             if xscore[note_index][0] == -3:
                 FLAG = False
+                InerFLAG = False
+                break
             else:
-                
-            InerFLAG = False
-    if t-int(t) == 0:
-        pass
-    elif t-int(t) ==
-        
-        result.append([t,start])
-    elif t-int(t) == 0.5:
-        pass
-    elif t-int(t) == 0.25 or t-int(t) == 0.75:
-        pass
-    else:
-        raise
-
+                t = 0
+                c_ins+=1
+                break
     t+=frame
-
-frame = 0.225
-t = 0
-note_index = 0
-c_ins = 0
-FLAG = True
-result = []
-while FLAG:
-    if xscore[note_index][0] == -3:
-        break
-    if xscore[note_index][0] != c_ins:
-        c_ins+=1
-        t = 0
-        
-        
-    if t-int(t) == 0:
-        interval = 0.13
-        if 
-        result.append([t,start])
-        
-    elif t-int(t) == 0.5:
-        pass
-    elif t-int(t) == 0.25 or t-int(t) == 0.75:
-        pass
-    
-    else:
-        raise
-
-    
